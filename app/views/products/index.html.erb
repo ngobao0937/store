@@ -1,0 +1,29 @@
+<h1><%= t ".title" %></h1>
+
+<button>
+    <%= link_to "New product", new_product_path if authenticated? %>
+</button>
+<table id="products">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @products.each do |product| %>
+        <tr>
+            <td><%= product.id %></td>
+            <td><%= product.name %></td>
+            <td>
+                <button class="btn btn-primary"><a href="/products/<%= product.id %>">Xem</a></button>
+                <% if authenticated? %>
+                    <button class="btn btn-primary"><a href="/products/<%= product.id %>/edit">Sửa</a></button>
+                    <%= button_to "Delete", product, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+                <% end %>
+            </td>
+        </tr>
+        <%end%>
+    </tbody>
+</table>
