@@ -6,4 +6,3 @@
     import "@rails/actiontext"
 
     import "controllers/test"
-    console.log("Hello, Rails with JavaScript!");

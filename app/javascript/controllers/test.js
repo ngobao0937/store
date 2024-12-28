@@ -1,2 +1,1 @@
-
-console.log("Hello, Rails with JavaScript!");
+console.log('Hello from test.js');
