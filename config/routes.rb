@@ -1,18 +1,12 @@
 Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :menus, only: [:index, :create, :new, :edit, :update]
+  resources :pages, only: [:index, :create, :new, :edit, :update]
+  resources :users, only: [:index, :create, :new, :edit, :update]
+  resources :banners, only: [:index, :create, :new, :edit, :update]
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 
   resources :products do
     resources :subscribers, only: [ :create ]
@@ -20,5 +14,13 @@ Rails.application.routes.draw do
 
   resource :unsubscribe, only: [ :show ]
 
+  get 'admin', to: 'dashboard#index', as: 'dashboard'
+  get 'session/logout', to: 'sessions#logout', as: 'session_logout'
+
+  get 'product/:id/delete', to: 'products#delete', as: 'product_delete'
+  get 'menu/:id/delete', to: 'menus#delete', as: 'menu_delete'
+  get 'page/:id/delete', to: 'pages#delete', as: 'page_delete'
+  get 'user/:id/delete', to: 'users#delete', as: 'user_delete'
+  get 'banner/:id/delete', to: 'banners#delete', as: 'banner_delete'
   root "products#index"
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_13_142559) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_30_070149) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -49,11 +49,41 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_13_142559) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "banners", force: :cascade do |t|
+    t.string "name"
+    t.integer "item"
+    t.boolean "active"
+    t.string "link"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "menus", force: :cascade do |t|
+    t.string "name"
+    t.integer "menu_fk"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "inventory_count"
+    t.integer "menu_id"
+    t.string "price", default: "0"
+    t.integer "discount", default: 0
+    t.integer "view", default: 0
+    t.string "slug"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -78,6 +108,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_13_142559) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "phone"
+    t.integer "super_user"
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 

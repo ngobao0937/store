@@ -1,29 +1,92 @@
-<h1><%= t ".title" %></h1>
+<section class="content-header">
+  <h1>
+    <%= link_to "Thêm mới", new_product_path, class: "btn btn-success" %>
+  </h1>
+</section>
 
-<button>
-    <%= link_to "New product", new_product_path if authenticated? %>
-</button>
-<table id="products">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @products.each do |product| %>
-        <tr>
-            <td><%= product.id %></td>
-            <td><%= product.name %></td>
-            <td>
-                <button class="btn btn-primary"><a href="/products/<%= product.id %>">Xem</a></button>
-                <% if authenticated? %>
-                    <button class="btn btn-primary"><a href="/products/<%= product.id %>/edit">Sửa</a></button>
-                    <%= button_to "Delete", product, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-                <% end %>
-            </td>
-        </tr>
-        <%end%>
-    </tbody>
-</table>
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header"></div>
+        <div class="box-body table-responsive no-padding">
+          <table id="table_" class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Hình ảnh</th>
+                <th>Tiêu đề</th>
+                <th>Số lượng</th>
+                <th>Menu</th>
+                <th>Thực hiện</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @products.each_with_index do |product, i| %>
+                <tr>
+                  <td><%= i + 1 %></td>
+                  <td>
+                    <% if product.featured_image.attached? %>
+                        <img src="<%= url_for(product.featured_image) %>" alt="Featured Image" width="50px">
+                    <% end %>
+                  </td>
+
+                  <td>
+                    <b><%= product.name %></b><br>
+                  </td>
+                  <td><%= product.inventory_count %></td>
+                  <td><%= product.menu.name %></td>
+                  <td>
+                    <a href="/products/<%= product.id %>/edit" class="btn btn-success">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" data-id="<%= product.id %>">
+                      <i class="fa fa-remove"></i>
+                    </button>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="text-center">
+        <%= paginate @products %> 
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<div id="myModal" class="modal fade" role="dialog" data-id="0">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Xác nhận xóa</h4>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có thật sự muốn xóa sản phẩm này?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+        <button type="button" class="btn btn-danger delete">Có</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= content_for :scripts do %>
+  <script>
+    $('[data-toggle="modal"]').on('click', function() {
+        var productId = $(this).data('id');
+        $('#myModal').data('id', productId);
+    });
+    $('#myModal button.delete').on('click', function(e) {
+        e.preventDefault();
+        var productId = $('#myModal').data('id');
+        window.location.href = '/product/' + productId + '/delete';
+    });
+  </script>
+<% end %>

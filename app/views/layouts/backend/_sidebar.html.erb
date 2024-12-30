@@ -1,0 +1,67 @@
+<aside class="main-sidebar">
+    <section class="sidebar">
+      <% if Current.user %>
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="<%= url_for(Current.user.featured_image) %>" class="img-circle" alt="User Image">
+          </div>
+          <div class="pull-left info">
+            <p><%= Current.user.name %></p>
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          </div>
+        </div>
+      <% end %>
+
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        
+        <li>
+          <%= link_to dashboard_path do %>
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          <% end %>
+        </li>
+  
+        <li>
+          <%= link_to '#' do %>
+            <i class="fa fa-newspaper-o"></i> <span>Giới thiệu</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to root_path do %>
+            <i class="fa fa-newspaper-o"></i> <span>Products</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to menus_path do %>
+            <i class="fa fa-newspaper-o"></i> <span>Menus</span>
+          <% end %>
+        </li> 
+        <li>
+          <%= link_to pages_path do %>
+            <i class="fa fa-newspaper-o"></i> <span>Pages</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to banners_path do %>
+            <i class="fa fa-newspaper-o"></i> <span>Banners</span>
+          <% end %>
+        </li>   
+        <li>
+          <%= link_to users_path do %>
+            <i class="fa fa-newspaper-o"></i> <span>Users</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to edit_user_path(Current.user.id) do %>
+            <i class="fa fa-user"></i> <span>Profile</span>
+          <% end %>
+        </li>       
+        <li>
+          <%= link_to session_logout_path do %>
+            <i class="fa fa-user"></i> <span>Sign out</span>
+          <% end %>
+        </li>        
+      </ul>
+    </section>
+  </aside>
+  
