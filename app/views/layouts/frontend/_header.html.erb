@@ -1,0 +1,54 @@
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mt-2">
+                <div class="go-social">
+                    <a href="">
+                        <i class="fa-brands fa-facebook fa-2xl"></i>
+                    </a>
+                    <a href="">
+                        <i class="fa-brands fa-twitter fa-2xl"></i>
+                    </a>
+                    <a href="">
+                        <i class="fa-brands fa-instagram fa-2xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div id="logo">
+                    <%= link_to image_tag("/shop-hoa-tuoi-flowercorner-logo.png.webp", 
+                        title: "FlowerCorner.vn - Shop hoa tươi", 
+                        alt: "FlowerCorner.vn - Shop hoa tươi", 
+                        class: "img-fluid", 
+                        width: 300, 
+                        height: 62), home_index_path %>
+                </div>
+            </div>
+            <div class="col-md-4 mt-2 hide-mobile">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <div id="search" class="input-group mb-3">
+                            <input type="text" name="search" placeholder="Tìm kiếm"
+                                class="form-control form-control-lg">
+                            <button type="button" data-lang="vi-vn" class="search-button"><i
+                                    class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </div>
+                    <div class="col-sm-2" id="header-cart">
+                        <div class="dropdown d-grid">
+                            <button type="button" data-bs-toggle="dropdown"
+                                class="btn btn-inverse btn-block dropdown-toggle"><i
+                                    class="fa-solid fa-bag-shopping"></i></button>
+                            <span class="mini-cart-count">0</span>
+                            <ul class="dropdown-menu dropdown-menu-right" style="width: 500px;">
+                                <li>
+                                    <p class="text-center">Giỏ hàng của bạn đang trống!</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

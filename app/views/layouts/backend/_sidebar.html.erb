@@ -20,20 +20,14 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           <% end %>
         </li>
-  
         <li>
-          <%= link_to '#' do %>
-            <i class="fa fa-newspaper-o"></i> <span>Giới thiệu</span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to root_path do %>
-            <i class="fa fa-newspaper-o"></i> <span>Products</span>
+          <%= link_to products_path do %>
+            <i class="fa fa-product-hunt"></i> <span>Products</span>
           <% end %>
         </li>
         <li>
           <%= link_to menus_path do %>
-            <i class="fa fa-newspaper-o"></i> <span>Menus</span>
+            <i class="fa fa-bars"></i> <span>Menus</span>
           <% end %>
         </li> 
         <li>
@@ -43,22 +37,22 @@
         </li>
         <li>
           <%= link_to banners_path do %>
-            <i class="fa fa-newspaper-o"></i> <span>Banners</span>
+            <i class="fa fa-picture-o"></i> <span>Banners</span>
           <% end %>
         </li>   
         <li>
           <%= link_to users_path do %>
-            <i class="fa fa-newspaper-o"></i> <span>Users</span>
+            <i class="fa fa-user"></i> <span>Users</span>
           <% end %>
         </li>
         <li>
           <%= link_to edit_user_path(Current.user.id) do %>
-            <i class="fa fa-user"></i> <span>Profile</span>
+            <i class="fa fa-user-circle-o"></i> <span>Profile</span>
           <% end %>
         </li>       
         <li>
           <%= link_to session_logout_path do %>
-            <i class="fa fa-user"></i> <span>Sign out</span>
+            <i class="fa fa-sign-out"></i> <span>Sign out</span>
           <% end %>
         </li>        
       </ul>

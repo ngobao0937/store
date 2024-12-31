@@ -51,8 +51,11 @@
   </div>
 
   <div class="row">
-    <div class="col-md-2 col-sm-2 col-xs-3">
-      <%= f.submit "Lưu thông tin", class: "btn btn-success" %>
+    <div class="col-md-1">
+      <%= link_to "Cancel", banners_path, class: 'btn btn-danger' %>
+    </div>
+    <div class="col-md-1">
+      <%= form.submit 'Lưu thông tin', class: 'btn btn-success' %>
     </div>
   </div>
 <% end %>

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[edit update]
 
   def index
-    @users = User.order(id: :desc).page(params[:page]).per(10)
+    @users = User.order(id: :desc).where.not(id: Current.user.id).page(params[:page]).per(10)
     @title = "Danh mục user"
   end
 

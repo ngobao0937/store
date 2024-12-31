@@ -22,5 +22,9 @@ Rails.application.routes.draw do
   get 'page/:id/delete', to: 'pages#delete', as: 'page_delete'
   get 'user/:id/delete', to: 'users#delete', as: 'user_delete'
   get 'banner/:id/delete', to: 'banners#delete', as: 'banner_delete'
-  root "products#index"
+  
+  get '/', to: 'home#index', as: 'home_index'
+  get '/product/:id/:slug', to: 'home#detail', as: 'product_detail'
+  get '/products/:id/:slug', to: 'home#menu_products', as: 'product_menu'
+  get '/page/:slug', to: 'home#page_detail', as: 'page_detail'
 end
