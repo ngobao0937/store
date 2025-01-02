@@ -1,8 +1,13 @@
 class HomeController < ApplicationController
+  allow_unauthenticated_access
   layout 'layouts/frontend/app'
 
   def index
-    @products_giam_gia = Product.where(menu_id: 10).or(Product.where(menu_id: Menu.where(menu_fk: 10).pluck(:id))).order(id: :desc).limit(4)
+    @products_giam_gia = Product.where(menu_id: 10)
+                                .or(Product.where(menu_id: Menu.where(menu_fk: 10).pluck(:id)))
+                                .or(Product.where("discount > ?", 0))
+                                .order(id: :desc)
+                                .limit(4)
 
     @products_new = Product.order(id: :desc).limit(8)
 
@@ -50,4 +55,64 @@ class HomeController < ApplicationController
       redirect_to root_path, alert: "Page not found!"
     end
   end
+
+  def register
+    @user = User.new
+  end
+
+  def customer_register
+    if User.exists?(email_address: user_params[:email_address])
+      flash.now[:alert] = 'Email đã tồn tại. Vui lòng sử dụng một email khác.'
+      @user = User.new
+      render :register
+    else
+      @user = User.new(user_params)
+      @user.super_user ||= 2
+      if @user.save
+        redirect_to home_login_path, notice: 'Người dùng đã được tạo thành công.'
+      else
+        alert = @user.errors.full_messages.to_sentence
+        flash.now[:alert] = alert
+        @user = User.new
+        render :register
+      end
+    end
+  end
+
+  def customer_login
+    if user = User.authenticate_by(params.permit(:email_address, :password))
+      if user.super_user == 2
+        session[:user_id] = user.id
+
+        if session[:cart] && session[:cart].any?
+          session[:cart].each do |product_id, quantity|
+            Cart.create(
+              user_id: user.id,
+              product_id: product_id.to_i,
+              quantity: quantity.to_i
+            )
+          end
+  
+          session[:cart] = nil
+        end
+        redirect_to account_index_path
+      end
+    else
+      redirect_to home_login_path, alert: "Try another email address or password."
+    end
+  end
+
+  def customer_logout
+    reset_session
+    session[:cart] = nil
+    redirect_to home_index
+  end
+
+
+  private
+
+    def user_params
+      params.require(:user).permit(:email_address, :password, :password_confirmation, :name, :phone)
+    end
+    
 end

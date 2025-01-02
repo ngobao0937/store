@@ -1,6 +1,5 @@
 class BannersController < ApplicationController
   layout "layouts/backend/app"
-  before_action :authenticate_user!
   before_action :set_banner, only: %i[edit update delete]
 
   def index
@@ -18,6 +17,7 @@ class BannersController < ApplicationController
     if @banner.save
       redirect_to banners_path, notice: 'Banner was successfully created.'
     else
+      @banner = Banner.new
       render :new
     end
   end
@@ -31,6 +31,7 @@ class BannersController < ApplicationController
     if @banner.update(banner_params)
       redirect_to banners_path, notice: 'Banner was successfully updated.'
     else
+      @banner = Banner.new
       render :edit
     end
   end
@@ -47,10 +48,5 @@ class BannersController < ApplicationController
 
     def banner_params
       params.require(:banner).permit(:name, :item, :active, :link, :slug, :featured_image)
-    end
-    def authenticate_user!
-      unless Current.user
-        redirect_to new_session_path, alert: "Please log in to continue."
-      end
     end
 end

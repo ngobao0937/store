@@ -11,7 +11,7 @@
         <div class="box-header">
         </div>
         <div class="box-body table-responsive no-padding">
-        <table id="table_" class="table table-hover">
+        <table id="table_" class="table table-hover table-bordered">
             <thead>
             <tr>
                 <th>ID</th>
@@ -31,7 +31,7 @@
                     <td><%= user.id %></td>
                     <td>
                         <% if user.featured_image.attached? %>
-                            <img src="<%= url_for(user.featured_image) %>" alt="Featured Image" width="50px">
+                            <img src="<%= url_for(user.featured_image) %>" alt="Avatar" width="50px">
                         <% end %>
                     </td>
                     <td><%= user.email_address %></td>
@@ -39,9 +39,9 @@
                     <td><%= user.phone %></td>
                     <td>
                         <% if user.super_user == 1 %>
-                            <span class="label label-success">Super User</span>
+                            <span class="label label-success">Admin</span>
                         <% else %>
-                            <span class="label label-warning">Manage User</span>
+                            <span class="label label-warning">Manager</span>
                         <% end %>
                     </td>
                     <% if Current.user.super_user == 1 %>

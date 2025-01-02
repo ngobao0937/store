@@ -1,5 +1,31 @@
 class PasswordsController < ApplicationController
-  layout 'layouts/backend/appAdmin'
+  # layout 'layouts/backend/appAdmin'
+  # allow_unauthenticated_access
+  # before_action :set_user_by_token, only: %i[ edit update ]
+
+  # def new
+  # end
+
+  # def create
+  #   if user = User.find_by(email_address: params[:email_address])
+  #     PasswordsMailer.reset(user).deliver_later
+  #   end
+
+  #   redirect_to new_session_path, notice: "Password reset instructions sent (if user with that email address exists)."
+  # end
+
+  # def edit
+  # end
+
+  # def update
+  #   if @user.update(params.permit(:password, :password_confirmation))
+  #     redirect_to new_session_path, notice: "Password has been reset."
+  #   else
+  #     redirect_to edit_password_path(params[:token]), alert: "Passwords did not match."
+  #   end
+  # end
+
+  layout 'layouts/frontend/app'
   allow_unauthenticated_access
   before_action :set_user_by_token, only: %i[ edit update ]
 
@@ -8,10 +34,12 @@ class PasswordsController < ApplicationController
 
   def create
     if user = User.find_by(email_address: params[:email_address])
-      PasswordsMailer.reset(user).deliver_later
+      if user.super_user == 2
+        PasswordsMailer.reset(user).deliver_later
+      end
     end
 
-    redirect_to new_session_path, notice: "Password reset instructions sent (if user with that email address exists)."
+    redirect_to home_login_path, notice: "Password reset instructions sent (if user with that email address exists)."
   end
 
   def edit
@@ -19,7 +47,7 @@ class PasswordsController < ApplicationController
 
   def update
     if @user.update(params.permit(:password, :password_confirmation))
-      redirect_to new_session_path, notice: "Password has been reset."
+      redirect_to home_login_path, notice: "Password has been reset."
     else
       redirect_to edit_password_path(params[:token]), alert: "Passwords did not match."
     end

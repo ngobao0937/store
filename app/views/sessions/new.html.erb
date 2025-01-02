@@ -16,11 +16,14 @@
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
-        <div class="col-xs-8">
-          <%= link_to "Forgot password?", new_password_path %>
-        </div>
-        <div class="col-xs-4">
-          <%= form.submit 'Sign In', class: 'btn btn-primary btn-block btn-flat' %>
+        <div class="row">
+          <div class="col-xs-4">
+          </div>
+          <div class="col-xs-4">
+            <%= form.submit 'Sign In', class: 'btn btn-primary btn-block btn-flat' %>
+          </div>
+          <div class="col-xs-4">
+          </div>
         </div>
       </div>
     <% end %>

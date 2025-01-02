@@ -1,11 +1,35 @@
 class ProductsController < ApplicationController
   layout 'layouts/backend/app'
-  before_action :authenticate_user!
   before_action :set_product, only: %i[ show edit update destroy ]
+
+  # def index
+  #   @products = Product.order(id: :desc).page(params[:page]).per(10)
+  #   @title = "Danh mục sản phẩm"
+  # end
+
   def index
-    @products = Product.order(id: :desc).page(params[:page]).per(10)
+    query = params[:table_search].to_s.strip
+    @products = Product.all
+    @products = @products.where("name LIKE ?", "%#{query}%") if query.present?
+  
+    inventory = params[:inventory].to_s.strip
+    if inventory == "Còn hàng"
+      @products = @products.where("inventory_count > 0")
+    elsif inventory == "Hết hàng"
+      @products = @products.where("inventory_count <= 0")
+    end
+
+    # Xử lý số dòng hiển thị
+    per_page = params[:per_page].to_i
+    per_page = 10 if per_page <= 0
+  
+    # Phân trang
+    @products = @products.order(id: :desc).page(params[:page]).per(per_page)
+  
     @title = "Danh mục sản phẩm"
   end
+  
+  
 
   def show
     # @product = Product.find(params[:id])
@@ -25,6 +49,8 @@ class ProductsController < ApplicationController
     else
       alert = @product.errors.full_messages.to_sentence
       flash.now[:alert] = alert
+      @menus = Menu.where(menu_fk: 0).or(Menu.where(menu_fk: nil))
+      @product = Product.new
       render :new, status: :unprocessable_entity
     end
   end
@@ -42,6 +68,8 @@ class ProductsController < ApplicationController
     else
       alert = @product.errors.full_messages.to_sentence
       flash.now[:alert] = alert
+      @menus = Menu.where(menu_fk: 0).or(Menu.where(menu_fk: nil))
+      @product = Product.new
       render :edit, status: :unprocessable_entity
     end
   end
@@ -64,11 +92,5 @@ class ProductsController < ApplicationController
 
     def set_product
       @product = Product.find(params[:id])
-    end
-
-    def authenticate_user!
-      unless Current.user
-        redirect_to new_session_path, alert: "Please log in to continue."
-      end
     end
 end

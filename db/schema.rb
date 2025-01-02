@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_30_070149) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_01_151010) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -59,10 +59,48 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_30_070149) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "product_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_carts_on_product_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
   create_table "menus", force: :cascade do |t|
     t.string "name"
     t.integer "menu_fk"
     t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_details", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.string "name"
+    t.integer "quantity"
+    t.string "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_details_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.string "email"
+    t.string "shipping_name"
+    t.string "shipping_phone"
+    t.string "shipping_address"
+    t.datetime "shipping_date"
+    t.string "shipping_time"
+    t.string "shipping_mess"
+    t.string "shipping_note"
+    t.string "discount"
+    t.string "order_total"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -116,6 +154,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_30_070149) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "carts", "products"
+  add_foreign_key "carts", "users"
+  add_foreign_key "order_details", "orders"
   add_foreign_key "sessions", "users"
   add_foreign_key "subscribers", "products"
 end

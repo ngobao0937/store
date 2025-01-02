@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
   layout 'layouts/backend/app'
-  before_action :authenticate_user!
   before_action :set_user, only: %i[edit update]
 
   def index
-    @users = User.order(id: :desc).where.not(id: Current.user.id).page(params[:page]).per(10)
+    @users = User.order(id: :desc).where.not(id: Current.user.id).where.not(super_user: 2).page(params[:page]).per(10)
     @title = "Danh mục user"
   end
 
@@ -20,6 +19,7 @@ class UsersController < ApplicationController
     else
       alert = @user.errors.full_messages.to_sentence
       flash.now[:alert] = alert
+      @user = User.new
       render :new
     end
   end
@@ -38,6 +38,7 @@ class UsersController < ApplicationController
     else
       alert = @user.errors.full_messages.to_sentence
       flash.now[:alert] = alert
+      @user = User.new
       render :edit
     end
   end
@@ -57,9 +58,4 @@ class UsersController < ApplicationController
       params.require(:user).permit(:email_address, :password, :password_confirmation, :name, :phone, :super_user, :featured_image)
     end
 
-    def authenticate_user!
-      unless Current.user
-        redirect_to new_session_path, alert: "Please log in to continue."
-      end
-    end
 end

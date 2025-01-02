@@ -1,6 +1,5 @@
 class MenusController < ApplicationController
   layout "layouts/backend/app"
-  before_action :authenticate_user!
   before_action :set_menu, only: [:edit, :update]
 
   def index
@@ -20,6 +19,7 @@ class MenusController < ApplicationController
       redirect_to menus_path, notice: 'Menu was successfully created.'
     else
       @menus = Menu.where(menu_fk: 0).all
+      @menu = Menu.new
       render :new
     end
   end
@@ -33,6 +33,8 @@ class MenusController < ApplicationController
     if @menu.update(menu_params)
       redirect_to menus_path, notice: 'Menu was successfully updated.'
     else
+      @menus = Menu.where(menu_fk: 0).all
+      @menu = Menu.new
       render :edit
     end
   end
@@ -51,9 +53,5 @@ class MenusController < ApplicationController
     def menu_params
       params.require(:menu).permit(:name, :menu_fk, :slug)
     end
-    def authenticate_user!
-      unless Current.user
-        redirect_to new_session_path, alert: "Please log in to continue."
-      end
-    end
+
 end

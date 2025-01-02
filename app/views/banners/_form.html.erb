@@ -33,7 +33,7 @@
     <div class="col-md-6">
         <% if banner.featured_image.attached? && !banner.new_record? %>
             <div class="form-group">
-              <img src="<%= url_for(banner.featured_image) %>" alt="Featured Image" width="100%" style="margin-left: 20px;">
+              <img src="<%= url_for(banner.featured_image) %>" alt="Featured Image" width="100%">
             </div>
         <% end %>
     </div>
@@ -51,11 +51,9 @@
   </div>
 
   <div class="row">
-    <div class="col-md-1">
+    <div class="col-xs-12">
       <%= link_to "Cancel", banners_path, class: 'btn btn-danger' %>
-    </div>
-    <div class="col-md-1">
-      <%= form.submit 'Lưu thông tin', class: 'btn btn-success' %>
+      <%= f.submit 'Lưu thông tin', class: 'btn btn-success' %>
     </div>
   </div>
 <% end %>

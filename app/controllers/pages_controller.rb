@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
   layout 'layouts/backend/app'
-  before_action :authenticate_user!
   before_action :set_page, only: %i[edit update delete]
 
   def index
@@ -23,6 +22,7 @@ class PagesController < ApplicationController
     if @page.save
       redirect_to pages_path, notice: 'Page was successfully created.'
     else
+      @page = Page.new
       render :new, status: :unprocessable_entity
     end
   end
@@ -31,6 +31,7 @@ class PagesController < ApplicationController
     if @page.update(page_params)
       redirect_to pages_path, notice: 'Page was successfully updated.'
     else
+      @page = Page.new
       render :edit, status: :unprocessable_entity
     end
   end
@@ -42,16 +43,12 @@ class PagesController < ApplicationController
 
   private
 
-  def set_page
-    @page = Page.find(params[:id])
-  end
-
-  def page_params
-    params.require(:page).permit(:name, :description, :slug)
-  end
-  def authenticate_user!
-    unless Current.user
-      redirect_to new_session_path, alert: "Please log in to continue."
+    def set_page
+      @page = Page.find(params[:id])
     end
-  end
+
+    def page_params
+      params.require(:page).permit(:name, :description, :slug)
+    end
+
 end

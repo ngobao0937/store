@@ -1,6 +1,7 @@
 <%= content_for :title, @product.name %>
 <main>
   <div id="product-info" class="container mt-4">
+    <%= render "layouts/frontend/alert" %>
     <div class="row">
       <div id="content" class="col">
         <div class="row mb-3">
@@ -35,16 +36,16 @@
             </div>
 
             <div class="call_us_box">
-              Gọi ngay: <span class="call-us">1900 633 045</span>
+              Gọi ngay: <span class="call-us">1900 123 456</span>
             </div>
 
             <div class="call_us_box call_social">
                 Chat ngay:
-                <a href="https://www.messenger.com/t/411745402577295" target="_blank"><img src="https://www.flowercorner.vn/image/icon/ms.png" alt="messenger" /></a>
-                <a href="https://zalo.me/0865160360" target="_blank"><img src="https://www.flowercorner.vn/image/icon/zalo.png" alt="zalo" /></a>
-                <a href="https://zalo.me/0918491941" target="_blank"><img src="https://www.flowercorner.vn/image/icon/zalo.png" alt="zalo" /></a>
-                <a href="https://zalo.me/0388040753" target="_blank"><img src="https://www.flowercorner.vn/image/icon/zalo.png" alt="zalo" /></a>
-                <a href="https://zalo.me/0563009083" target="_blank"><img src="https://www.flowercorner.vn/image/icon/zalo.png" alt="zalo" /></a>
+                <a href="" ><img src="https://www.flowercorner.vn/image/icon/ms.png" alt="messenger" /></a>
+                <a href="" ><img src="https://www.flowercorner.vn/image/icon/zalo.png" alt="zalo" /></a>
+                <a href="" ><img src="https://www.flowercorner.vn/image/icon/zalo.png" alt="zalo" /></a>
+                <a href="" ><img src="https://www.flowercorner.vn/image/icon/zalo.png" alt="zalo" /></a>
+                <a href="" ><img src="https://www.flowercorner.vn/image/icon/zalo.png" alt="zalo" /></a>
             </div>
 
             <div class="call_us_box ship_box">
@@ -62,15 +63,16 @@
             <% if @product.inventory_count? %>
               <p><b><u>In stock</u> : <%= @product.inventory_count %></b></p>
               <div id="product">
-                <form id="form-product">
+                <%= form_with url: cart_add_path, method: :post, local: true do |f| %>
                   <div class="mb-3">
-                      <p class="mb-0"><%= label_tag :quantity, "Qty", class: "form-label" %></p>
-                      <%= number_field_tag :quantity, 1, size: 2, class: "form-control", id: "input-quantity" %>
-                      <%= hidden_field_tag :product_id, @product.id %>
-                      <%= submit_tag "Đặt hàng", class: "btn btn-primary btn-lg btn-block" %>
-                      <button type="button" id="dat-nhanh" class="btn btn-primary btn-lg btn-block">Đặt nhanh</button>
-                    </div>
-                </form>
+                    <p class="mb-0"><label for="input-quantity" class="form-label">Qty</label></p>
+                    <%= f.number_field :quantity, min: 1, value: 1, size: 2, id: "input-quantity", class: "form-control" %>
+                    <%= hidden_field_tag :product_id, @product.id, id: "input-product-id" %>
+                    <%= f.submit "Đặt hàng", class: "btn btn-primary btn-lg btn-block" %>
+                    <%= button_tag "Đặt nhanh", type: "button", rel: @product.id, class: "btn btn-primary btn-lg btn-block" %>
+                  </div>
+                <% end %>
+
               </div>
               <div class="pdp-featured">
                 <div class="pdp-featured-item">
@@ -104,9 +106,7 @@
 
         <div class="tab-content">
           <div id="tab-description" class="tab-pane fade show active mb-4">
-            <div><%= raw @product.description %></div>
-            <p><strong><em>Lưu ý:</em></strong></p>
-            <p><em>**Do được làm thủ công, nên sản phẩm ngoài thực tế sẽ có đôi chút khác biệt...</em></p>
+            <%= raw @product.description %>
           </div>
         </div>
       </div>
@@ -139,7 +139,7 @@
                 </div>
               </div>
               <div class="buynow-button text-center">
-                <a href="">ĐẶT HÀNG</a>
+                <a href="<%= product_detail_path(id: item.id, slug: item.slug) %>">ĐẶT HÀNG</a>
               </div>
             </div>
           </div>
@@ -175,7 +175,7 @@
                 </div>
               </div>
               <div class="buynow-button text-center">
-                <a href="">ĐẶT HÀNG</a>
+                <a href="<%= product_detail_path(id: item.id, slug: item.slug) %>">ĐẶT HÀNG</a>
               </div>
             </div>
           </div>
