@@ -2,32 +2,28 @@ class ProductsController < ApplicationController
   layout 'layouts/backend/app'
   before_action :set_product, only: %i[ show edit update destroy ]
 
-  # def index
-  #   @products = Product.order(id: :desc).page(params[:page]).per(10)
-  #   @title = "Danh mục sản phẩm"
-  # end
-
   def index
     query = params[:table_search].to_s.strip
+    
     @products = Product.all
     @products = @products.where("name LIKE ?", "%#{query}%") if query.present?
   
-    inventory = params[:inventory].to_s.strip
-    if inventory == "Còn hàng"
+    @inventory = params[:inventory].to_s.strip.presence || "Còn hàng"
+  
+    case @inventory
+    when "Còn hàng"
       @products = @products.where("inventory_count > 0")
-    elsif inventory == "Hết hàng"
+    when "Hết hàng"
       @products = @products.where("inventory_count <= 0")
     end
-
-    # Xử lý số dòng hiển thị
-    per_page = params[:per_page].to_i
-    per_page = 10 if per_page <= 0
   
-    # Phân trang
-    @products = @products.order(id: :desc).page(params[:page]).per(per_page)
+    @per_page = params[:per_page].to_i.positive? ? params[:per_page].to_i : 10
+  
+    @products = @products.order(id: :desc).page(params[:page]).per(@per_page)
   
     @title = "Danh mục sản phẩm"
   end
+  
   
   
 

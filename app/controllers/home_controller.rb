@@ -56,6 +56,32 @@ class HomeController < ApplicationController
     end
   end
 
+  def search
+    @q = params[:q].to_s.strip
+    @per_page = params[:per_page].to_i > 0 ? params[:per_page].to_i : 20
+  
+    @sort = params[:sort].to_s.strip || "Mặc định"
+    
+    order_query = case @sort
+                  when "Tên (A - Z)"
+                    "name ASC"
+                  when "Tên (Z - A)"
+                    "name DESC"
+                  when "Giá (Thấp - Cao)"
+                    "price DESC"
+                  when "Giá (Cao - Thấp)"
+                    "price ASC"
+                  else
+                    "id DESC"
+                  end
+  
+    @products = Product.where("name LIKE ?", "%#{@q}%")
+                       .order(order_query)
+                       .page(params[:page])
+                       .per(@per_page)
+  end
+  
+  
   def register
     @user = User.new
   end

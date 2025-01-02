@@ -28,11 +28,13 @@
                 <div class="row">
                     <div class="col-sm-10">
                         <div id="search" class="input-group mb-3">
-                            <input type="text" name="search" placeholder="Tìm kiếm"
-                                class="form-control form-control-lg">
-                            <button type="button" data-lang="vi-vn" class="search-button"><i
-                                    class="fa-solid fa-magnifying-glass"></i></button>
-                        </div>
+                          <%= form_with url: home_search_path, method: :get, local: true, class: "w-100" do %>
+                            <input type="text" name="q" placeholder="Tìm kiếm" class="form-control form-control-lg" value="<%= params[:q] %>" maxlength="50">
+                            <button type="submit" data-lang="vi-vn" class="search-button">
+                              <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                          <% end %>
+                        </div>    
                     </div>
                     <div class="col-sm-2" id="header-cart">
                         <div class="dropdown d-grid">

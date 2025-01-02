@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get '/product/:id/:slug', to: 'home#detail', as: 'product_detail'
   get '/products/:id/:slug', to: 'home#menu_products', as: 'product_menu'
   get '/page/:slug', to: 'home#page_detail', as: 'page_detail'
+  get '/search', to: 'home#search', as: 'home_search'
 
   get 'login', to: 'home#login', as: 'home_login'
   post 'login', to: 'home#customer_login', as: 'home_customer_login'
