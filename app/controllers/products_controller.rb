@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
     query = params[:table_search].to_s.strip
     
     @products = Product.all
-    @products = @products.where("name LIKE ?", "%#{query}%") if query.present?
+    @products = @products.where("name ILIKE ?", "%#{query}%") if query.present?
   
     @inventory = params[:inventory].to_s.strip.presence || "Còn hàng"
   

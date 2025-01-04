@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
     if query.present?
       search_query = "%#{query}%"
       columns = [:name, :email, :phone, :shipping_name, :shipping_phone, :shipping_address]
-      conditions = columns.map { |column| "#{column} LIKE :query" }.join(" OR ")
+      conditions = columns.map { |column| "#{column} ILIKE :query" }.join(" OR ")
       @orders = @orders.where(conditions, query: search_query)
     end
   
