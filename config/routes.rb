@@ -52,4 +52,6 @@ Rails.application.routes.draw do
   get 'checkout', to: 'cart#checkout', as: 'cart_checkout'
   post 'checkout', to: 'cart#pay', as: 'cart_pay'
   get 'thank_you', to: 'cart#thank_you', as: 'cart_thank_you'
+
+  root "home#index"
 end
