@@ -3,7 +3,11 @@
       <% if Current.user %>
         <div class="user-panel">
           <div class="pull-left image">
+            <% if Current.user.featured_image.blank? %>
+              <img src="/admin.png" class="img-circle" alt="User Image">
+            <% else %>
             <img src="<%= url_for(Current.user.featured_image) %>" class="img-circle" alt="User Image">
+            <% end %>
           </div>
           <div class="pull-left info">
             <p><%= Current.user.name %></p>

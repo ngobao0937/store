@@ -41,7 +41,7 @@
                     <td><b><%= menu.name %></b></td>
                     <td><b><%= menu.slug %></b></td>
                     <td>
-                        <% if ![1, 5, 6, 7, 8, 9, 10].include?(menu.id) %>
+                        <% if ![1, 2, 3, 4, 5, 6, 7].include?(menu.id) %>
                             <a href="/menus/<%= menu.id %>/edit" class="btn btn-success">
                                 <i class="fa fa-edit"></i>
                             </a>
@@ -51,7 +51,7 @@
                                 </button>
                             <% end %>
                         <% else %> 
-                            <span class="label label-danger">No Action</span>
+                            <span class="label label-danger">Disable</span>
                         <% end %>
                     </td>
                 </tr>

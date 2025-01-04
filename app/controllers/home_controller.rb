@@ -3,8 +3,8 @@ class HomeController < ApplicationController
   layout 'layouts/frontend/app'
 
   def index
-    @products_giam_gia = Product.where(menu_id: 10)
-                                .or(Product.where(menu_id: Menu.where(menu_fk: 10).pluck(:id)))
+    @products_giam_gia = Product.where(menu_id: 7)
+                                .or(Product.where(menu_id: Menu.where(menu_fk: 7).pluck(:id)))
                                 .or(Product.where("discount > ?", 0))
                                 .order(id: :desc)
                                 .limit(4)
@@ -16,11 +16,11 @@ class HomeController < ApplicationController
     child_menu_sn_ids = Menu.where(menu_fk: 1).pluck(:id)
     @products_sinh_nhat = Product.where(menu_id: [1, *child_menu_sn_ids]).order(id: :desc).limit(4)
 
-    child_menu_kt_ids = Menu.where(menu_fk: 5).pluck(:id)
-    @products_khai_truong = Product.where(menu_id: [5, *child_menu_kt_ids]).order(id: :desc).limit(8)
+    child_menu_kt_ids = Menu.where(menu_fk: 2).pluck(:id)
+    @products_khai_truong = Product.where(menu_id: [2, *child_menu_kt_ids]).order(id: :desc).limit(8)
 
-    child_menu_hl_ids = Menu.where(menu_fk: 6).pluck(:id)
-    @products_hoa_lan = Product.where(menu_id: [6, *child_menu_hl_ids]).order(id: :desc).limit(8)
+    child_menu_hl_ids = Menu.where(menu_fk: 3).pluck(:id)
+    @products_hoa_lan = Product.where(menu_id: [3, *child_menu_hl_ids]).order(id: :desc).limit(8)
 
     @banners = Banner.where(active: 1).order(:item)
   end

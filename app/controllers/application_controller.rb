@@ -38,7 +38,6 @@ class ApplicationController < ActionController::Base
   
       items = products.map do |product|
         cart_item = cart.find { |item| item.product_id == product.id }
-  
         {
           id: product.id,
           name: product.name,

