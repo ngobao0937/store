@@ -139,7 +139,7 @@ class CartController < ApplicationController
       session[:cart] = nil
     end
   
-    redirect_to cart_thanh_you_path
+    redirect_to cart_thank_you_path
   rescue StandardError => e
     flash[:alert] = "Có lỗi xảy ra: #{e.message}"
     redirect_to cart_checkout_path
