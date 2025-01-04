@@ -19,42 +19,42 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         
-        <li>
+        <li class="<%= 'active' if current_page?(dashboard_path) %>">
           <%= link_to dashboard_path do %>
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           <% end %>
         </li>
-        <li>
+        <li class="<%= 'active' if current_page?(orders_path) %>">
           <%= link_to orders_path do %>
             <i class="fa fa-shopping-cart"></i> <span>Orders</span>
           <% end %>
         </li>
-        <li>
+        <li class="<%= 'active' if current_page?(products_path) || current_page?(new_product_path) || (@product && current_page?(edit_product_path(@product))) %>">
           <%= link_to products_path do %>
             <i class="fa fa-product-hunt"></i> <span>Products</span>
           <% end %>
         </li>
-        <li>
+        <li class="<%= 'active' if current_page?(menus_path) || current_page?(new_menu_path) || (@menu && current_page?(edit_menu_path(@menu))) %>">
           <%= link_to menus_path do %>
             <i class="fa fa-bars"></i> <span>Menus</span>
           <% end %>
         </li> 
-        <li>
+        <li class="<%= 'active' if current_page?(pages_path) || current_page?(new_page_path) || (@page && current_page?(edit_page_path(@page))) %>">
           <%= link_to pages_path do %>
             <i class="fa fa-newspaper-o"></i> <span>Pages</span>
           <% end %>
         </li>
-        <li>
+        <li class="<%= 'active' if current_page?(banners_path) || current_page?(new_banner_path) || (@banner && current_page?(edit_banner_path(@banner))) %>">
           <%= link_to banners_path do %>
             <i class="fa fa-picture-o"></i> <span>Banners</span>
           <% end %>
         </li>   
-        <li>
+        <li class="<%= 'active' if current_page?(users_path) || current_page?(new_user_path) || (@user && @title == 'Sửa user' && current_page?(edit_user_path(@user))) %>">
           <%= link_to users_path do %>
             <i class="fa fa-user"></i> <span>Users</span>
           <% end %>
         </li>
-        <li>
+        <li class="<%= 'active' if current_page?(edit_user_path(Current.user.id)) %>">
           <%= link_to edit_user_path(Current.user.id) do %>
             <i class="fa fa-user-circle-o"></i> <span>Profile</span>
           <% end %>
@@ -63,7 +63,7 @@
           <%= link_to session_logout_path do %>
             <i class="fa fa-sign-out"></i> <span>Sign out</span>
           <% end %>
-        </li>        
+        </li>         
       </ul>
     </section>
   </aside>

@@ -68,14 +68,14 @@ class HomeController < ApplicationController
                   when "Tên (Z - A)"
                     "name DESC"
                   when "Giá (Thấp - Cao)"
-                    "price DESC"
-                  when "Giá (Cao - Thấp)"
                     "price ASC"
+                  when "Giá (Cao - Thấp)"
+                    "price DESC"
                   else
                     "id DESC"
                   end
   
-    @products = Product.where("name LIKE ?", "%#{@q}%")
+    @products = Product.where("name ILIKE ?", "%#{@q}%")
                        .order(order_query)
                        .page(params[:page])
                        .per(@per_page)
