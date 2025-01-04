@@ -1,0 +1,22 @@
+                                                          List of databases
+          Name          |  Owner   | Encoding | Locale Provider | Collate |  Ctype  | ICU Locale | ICU Rules |   Access privileges   
+------------------------+----------+----------+-----------------+---------+---------+------------+-----------+-----------------------
+ myapp_development      | ngobao   | UTF8     | libc            | C.UTF-8 | C.UTF-8 |            |           | 
+ myapp_test             | ngobao   | UTF8     | libc            | C.UTF-8 | C.UTF-8 |            |           | 
+ mysite_development     | ngobao   | UTF8     | libc            | C.UTF-8 | C.UTF-8 |            |           | 
+ mysite_test            | ngobao   | UTF8     | libc            | C.UTF-8 | C.UTF-8 |            |           | 
+ postgres               | postgres | UTF8     | libc            | C.UTF-8 | C.UTF-8 |            |           | 
+ render_development     | ngobao   | UTF8     | libc            | C.UTF-8 | C.UTF-8 |            |           | 
+ render_test            | ngobao   | UTF8     | libc            | C.UTF-8 | C.UTF-8 |            |           | 
+ store_development      | ngobao   | UTF8     | libc            | C.UTF-8 | C.UTF-8 |            |           | 
+ store_production       | ngobao   | UTF8     | libc            | C.UTF-8 | C.UTF-8 |            |           | 
+ store_production_cable | ngobao   | UTF8     | libc            | C.UTF-8 | C.UTF-8 |            |           | 
+ store_production_cache | ngobao   | UTF8     | libc            | C.UTF-8 | C.UTF-8 |            |           | 
+ store_production_queue | ngobao   | UTF8     | libc            | C.UTF-8 | C.UTF-8 |            |           | 
+ store_test             | ngobao   | UTF8     | libc            | C.UTF-8 | C.UTF-8 |            |           | 
+ template0              | postgres | UTF8     | libc            | C.UTF-8 | C.UTF-8 |            |           | =c/postgres          +
+                        |          |          |                 |         |         |            |           | postgres=CTc/postgres
+ template1              | postgres | UTF8     | libc            | C.UTF-8 | C.UTF-8 |            |           | =c/postgres          +
+                        |          |          |                 |         |         |            |           | postgres=CTc/postgres
+(15 rows)
+
