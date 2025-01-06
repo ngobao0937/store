@@ -39,7 +39,8 @@ class AccountController < ApplicationController
   end
 
   def order
-    @orders = Order.order(id: :desc).page(params[:page]).per(10)
+    user_id = session[:user_id]
+    @orders = Order.where(user_id: user_id).order(id: :desc).page(params[:page]).per(10)
   end
 
   def order_detail

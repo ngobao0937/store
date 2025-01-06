@@ -113,7 +113,8 @@ class CartController < ApplicationController
         shipping_note: params[:shipping_note],
         discount: params[:discount],
         order_total: params[:order_total],
-        status: 'pending'
+        status: 'pending',
+        user_id: session[:user_id]
       )
   
       cart_items.each do |item|

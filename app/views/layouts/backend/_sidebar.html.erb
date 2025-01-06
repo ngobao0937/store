@@ -24,7 +24,7 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           <% end %>
         </li>
-        <li class="<%= 'active' if current_page?(orders_path) %>">
+        <li class="<%= 'active' if current_page?(orders_path) || (@order && current_page?(order_path(@order))) %>">
           <%= link_to orders_path do %>
             <i class="fa fa-shopping-cart"></i> <span>Orders</span>
           <% end %>
