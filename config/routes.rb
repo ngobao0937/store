@@ -39,6 +39,8 @@ Rails.application.routes.draw do
   get 'logout', to: 'home#logout', as: 'home_logout'
 
   get 'account', to: 'account#index', as: 'account_index'
+  get 'account/order', to: 'account#order', as: 'account_order'
+  get 'account/order_detail/:id', to: 'account#order_detail', as: 'account_order_detail'
   get 'account/edit', to: 'account#edit', as: 'account_edit'
   post 'account/update', to: 'account#update', as: 'account_update'
   get 'account/password', to: 'account#password', as: 'account_password'

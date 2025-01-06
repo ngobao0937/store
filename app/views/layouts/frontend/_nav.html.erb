@@ -17,7 +17,7 @@
                         <ul class="dropdown-menu dropdown-menu-right">
                             <% if current_user %>
                                 <li><%= link_to 'Tài khoản', account_index_path, class: 'dropdown-item' %></li>
-                                <li><a href="" class="dropdown-item">Lịch sử đơn hàng</a></li>
+                                <li><a href="/account/order" class="dropdown-item">Lịch sử đơn hàng</a></li>
                                 <li><%= link_to 'Đăng xuất', account_logout_path, class: 'dropdown-item' %></li>
                             <% else %>
                                 <li><%= link_to 'Đăng ký', home_register_path, class: 'dropdown-item' %></li>

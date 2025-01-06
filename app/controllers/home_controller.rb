@@ -81,7 +81,6 @@ class HomeController < ApplicationController
                        .per(@per_page)
   end
   
-  
   def register
     @user = User.new
   end

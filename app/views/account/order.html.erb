@@ -1,0 +1,65 @@
+<%= content_for :title, "Lịch sử đơn hàng" %>
+<main>
+    <div class="container">
+        <%= render 'account/breadcrumb' %>
+        <%= render 'layouts/frontend/alert' %>
+      <div class="row">
+        <div id="content" class="col">
+            <h1>Lịch sử đơn hàng</h1>
+            <% if @orders.any? %>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ngày đặt</th>
+                            <th>Ngày giao</th>
+                            <th>Tổng tiền</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @orders.each_with_index do |order, i| %>
+                        <tr onclick="goToDetail('<%= order.id %>')" style="cursor: pointer;">
+                            <td><%= i + 1 %></td>
+                            <td><%= order.created_at.strftime("%d/%m/%Y %H:%M:%S") if order.created_at.present? %></td>
+                            <td><%= order.shipping_date.strftime("%d/%m/%Y") if order.shipping_date.present? %></td>
+                            <td><%= number_to_currency(order.order_total, unit: ' VND', format: '%n %u', precision: 0) %></td>
+                            <td>
+                                <% case order.status %>
+                                <% when 'pending' %>
+                                    <span class="label label-warning">Chưa duyệt</span>
+                                <% when 'approved' %>
+                                    <span class="label label-success">Đã duyệt</span>
+                                <% when 'cancelled' %>
+                                    <span class="label label-danger">Đã hủy</span>
+                                <% else %>
+                                    <span class="label label-primary">Không xác định</span>
+                                <% end %>
+                            </td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center">
+                <%= paginate @orders %>
+            </div>
+            <% else %>
+            <p>Lịch sử mua hàng trống</p>
+            <% end %>
+            <div class="d-inline-block pt-2 pd-2 w-100">
+                <div class="float-start">
+                  <%= link_to "Quay lại", account_index_path, class: "btn btn-light" %>
+                </div>
+            </div>
+        </div>
+        <%= render 'account/aside' %>
+      </div>
+    </div>
+</main>
+<script>
+    function goToDetail(orderId) {
+        window.location.href = `/account/order_detail/${orderId}`;
+    }
+</script>

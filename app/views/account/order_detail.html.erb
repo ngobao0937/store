@@ -1,0 +1,48 @@
+<%= content_for :title, "Chi tiết đơn hàng" %>
+<main>
+    <div class="container">
+        <%= render 'account/breadcrumb' %>
+        <%= render 'layouts/frontend/alert' %>
+      <div class="row">
+        <div id="content" class="col">
+            <h1>Chi tiết đơn hàng</h1>
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Hình ảnh</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Đơn giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @order.order_details.each_with_index do |item, index| %>
+                            <tr>
+                                <td><%= index + 1 %></td>
+                                <td><img src="<%= url_for(item.featured_image) %>" alt="<%= item.name %>" width="50"></td>
+                                <td><%= item.name %></td>
+                                <td><%= number_to_currency(item.price.to_f, unit: ' VND', format: '%n %u', precision: 0) %></td>
+                                <td><%= item.quantity %></td>
+                                <td><%= number_to_currency(item.price.to_f * item.quantity, unit: ' VND', format: '%n %u', precision: 0) %></td>
+                            </tr>
+                        <% end %>
+                        <tr>
+                            <td colspan="5" style="text-align: right;"><b>Tổng tiền: </b></td>
+                            <td><%= number_to_currency(@order.order_total, unit: ' VND', format: '%n %u', precision: 0) %></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-inline-block pt-2 pd-2 w-100">
+                <div class="float-start">
+                  <%= link_to "Quay lại", account_order_path, class: "btn btn-light" %>
+                </div>
+            </div>
+        </div>
+        <%= render 'account/aside' %>
+      </div>
+    </div>
+</main>

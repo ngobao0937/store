@@ -38,6 +38,14 @@ class AccountController < ApplicationController
     end
   end
 
+  def order
+    @orders = Order.order(id: :desc).page(params[:page]).per(10)
+  end
+
+  def order_detail
+    @order = Order.includes(:order_details).find(params[:id])
+  end
+
   def logout
     session[:user_id] = nil
     redirect_to home_logout_path
