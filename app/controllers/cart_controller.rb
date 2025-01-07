@@ -27,7 +27,11 @@ class CartController < ApplicationController
       session[:cart] = cart
     end
   
-    redirect_back(fallback_location: home_login_path, notice: "Sản phẩm đã được thêm vào giỏ hàng!")
+    if params[:action_type] == "quick_order"
+      redirect_to cart_checkout_path
+    else
+      redirect_back(fallback_location: home_login_path, notice: "Sản phẩm đã được thêm vào giỏ hàng!")
+    end
   end
   
 

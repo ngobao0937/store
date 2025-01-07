@@ -28,9 +28,9 @@
                             <td>
                                 <% case order.status %>
                                 <% when 'pending' %>
-                                    <span class="label label-warning">Chưa duyệt</span>
+                                    <span class="label label-warning">Chưa xác nhận</span>
                                 <% when 'approved' %>
-                                    <span class="label label-success">Đã duyệt</span>
+                                    <span class="label label-success">Đã xác nhận</span>
                                 <% when 'cancelled' %>
                                     <span class="label label-danger">Đã hủy</span>
                                 <% else %>

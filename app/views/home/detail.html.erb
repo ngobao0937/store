@@ -47,32 +47,32 @@
                 <a href="" ><img src="https://www.flowercorner.vn/image/icon/zalo.png" alt="zalo" /></a>
                 <a href="" ><img src="https://www.flowercorner.vn/image/icon/zalo.png" alt="zalo" /></a>
             </div>
-
-            <div class="call_us_box ship_box">
-              Vận chuyển: <span class="free-ship">Miễn phí giao hoa khu vực nội thành TP.HCM & Hà Nội</span>
-            </div>
-            <div class="ship_box_detail row">
-              <div class="col-sm-6 mt-2 mb-2">
-                <select class="form-select ship-to-region"></select>
-              </div>
-              <div class="col-sm-6 mt-2 mb-2">
-                <select class="form-select ship-to-district"></select>
-              </div>
-              <p class="ship_message">Phí giao hàng: <span class="ship_fee">Miễn phí!</span></p>
-            </div>
             <% if @product.inventory_count? %>
+              <div class="call_us_box ship_box">
+                Vận chuyển: <span class="free-ship">Miễn phí giao hoa khu vực nội thành TP.HCM & Hà Nội</span>
+              </div>
+              <div class="ship_box_detail row">
+                <div class="col-sm-6 mt-2 mb-2">
+                  <select class="form-select ship-to-region"></select>
+                </div>
+                <div class="col-sm-6 mt-2 mb-2">
+                  <select class="form-select ship-to-district"></select>
+                </div>
+                <p class="ship_message">Phí giao hàng: <span class="ship_fee">Miễn phí!</span></p>
+              </div>
               <p><b><u>In stock</u> : <%= @product.inventory_count %></b></p>
               <div id="product">
                 <%= form_with url: cart_add_path, method: :post, local: true do |f| %>
                   <div class="mb-3">
                     <p class="mb-0"><label for="input-quantity" class="form-label">Qty</label></p>
-                    <%= f.number_field :quantity, min: 1, value: 1, size: 2, id: "input-quantity", class: "form-control" %>
+                    <%= f.number_field :quantity, min: 1, value: 1, size: 2, id: "input-quantity", class: "form-control", style: 'width: 50px; display: inline-block; vertical-align: bottom;' %>
                     <%= hidden_field_tag :product_id, @product.id, id: "input-product-id" %>
-                    <%= f.submit "Đặt hàng", class: "btn btn-primary btn-lg btn-block" %>
-                    <%= button_tag "Đặt nhanh", type: "button", rel: @product.id, class: "btn btn-primary btn-lg btn-block" %>
+                    <%= hidden_field_tag :action_type, "order", id: "input-action-type" %>
+
+                    <%= f.submit "Đặt hàng", class: "btn btn-primary btn-lg btn-block", style: 'background: orange; border: 2px solid orange;' %>
+                    <%= button_tag "Đặt nhanh", type: "submit", class: "btn btn-primary btn-lg btn-block", style: 'background: #e55f00; border: 2px solid #e55f00;', onclick: "document.getElementById('input-action-type').value = 'quick_order';" %>                  
                   </div>
                 <% end %>
-
               </div>
               <div class="pdp-featured">
                 <div class="pdp-featured-item">

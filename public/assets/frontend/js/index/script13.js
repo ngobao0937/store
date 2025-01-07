@@ -76,36 +76,36 @@ if ($("#product-category").length) {
         }
     })
 }
-$("#product-info").length && (products = [], products.push({
-    item_id: $("#form-product #content").find('input[name="product_id"]').val(),
-    item_name: $("#product-info #content").find(".product-name").text(),
-    price: Number($("#product-info #content").find(".price-new").text().replace(/\D/g, "")),
-    quantity: 9999
-}), dataLayer.push({
-    event: "view_item",
-    ecommerce: {
-        currency: "VND",
-        value: products[0].price,
-        items: products
-    }
-}));
-$(document).on("click", "#button-cart", function () {
-    var a = [];
-    a.push({
-        item_id: $("#form-product #content").find('input[name="product_id"]').val(),
-        item_name: $("#product-info #content").find(".product-name").text(),
-        price: Number($("#product-info #content").find(".price-new").text().replace(/\D/g, "")),
-        quantity: Number($("#input-quantity").val())
-    });
-    dataLayer.push({
-        event: "add_to_cart",
-        ecommerce: {
-            currency: "VND",
-            value: a[0].price,
-            items: a
-        }
-    })
-});
+// $("#product-info").length && (products = [], products.push({
+//     item_id: $("#form-product #content").find('input[name="product_id"]').val(),
+//     item_name: $("#product-info #content").find(".product-name").text(),
+//     price: Number($("#product-info #content").find(".price-new").text().replace(/\D/g, "")),
+//     quantity: 9999
+// }), dataLayer.push({
+//     event: "view_item",
+//     ecommerce: {
+//         currency: "VND",
+//         value: products[0].price,
+//         items: products
+//     }
+// }));
+// $(document).on("click", "#button-cart", function () {
+//     var a = [];
+//     a.push({
+//         item_id: $("#form-product #content").find('input[name="product_id"]').val(),
+//         item_name: $("#product-info #content").find(".product-name").text(),
+//         price: Number($("#product-info #content").find(".price-new").text().replace(/\D/g, "")),
+//         quantity: Number($("#input-quantity").val())
+//     });
+//     dataLayer.push({
+//         event: "add_to_cart",
+//         ecommerce: {
+//             currency: "VND",
+//             value: a[0].price,
+//             items: a
+//         }
+//     })
+// });
 if ($("#checkout-cart").length) {
     for (var products = [], total = 0, $product_list = $("#shopping-cart tbody tr"), i = 0; i < $product_list.length; i++) products.push({
         item_id: $($product_list[i]).find(".cart-product-id").val(),

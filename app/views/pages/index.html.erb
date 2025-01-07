@@ -1,7 +1,7 @@
 
 <section class="content-header">
 <h1>
-    <%= link_to "Thêm mới", new_page_path, class: "btn btn-success" %>
+    <%= link_to "Thêm mới", new_page_path, class: "btn btn-success btn-sm" %>
 </h1>
 </section>
 
@@ -40,11 +40,11 @@
                     <td><%= page.name %></td>
                     <td><%= page.slug %></td>
                     <td>
-                        <a href="/pages/<%= page.id %>/edit" class="btn btn-success">
+                        <a href="/pages/<%= page.id %>/edit" class="btn btn-success btn-sm">
                             <i class="fa fa-edit"></i>
                         </a>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" data-id="<%= page.id %>">
-                            <i class="fa fa-remove"></i>
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" data-id="<%= page.id %>">
+                            <i class="fa fa-trash"></i>
                         </button>
                     </td>
                     </tr>

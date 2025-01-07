@@ -69,11 +69,11 @@
                   <td><%= product.view %></td>
                   <td><%= product.menu.name %></td>
                   <td>
-                    <a href="/products/<%= product.id %>/edit" class="btn btn-success">
+                    <a href="/products/<%= product.id %>/edit" class="btn btn-success btn-sm">
                         <i class="fa fa-edit"></i>
                     </a>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" data-id="<%= product.id %>">
-                      <i class="fa fa-remove"></i>
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" data-id="<%= product.id %>">
+                      <i class="fa fa-trash"></i>
                     </button>
                   </td>
                 </tr>
