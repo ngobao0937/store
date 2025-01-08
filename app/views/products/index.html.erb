@@ -42,6 +42,7 @@
               </tr>
             </thead>
             <tbody>
+              <% if @products.any? %>
               <% @products.each_with_index do |product, i| %>
                 <tr>
                   <td><%= i + 1 %></td>
@@ -76,6 +77,13 @@
                       <i class="fa fa-trash"></i>
                     </button>
                   </td>
+                </tr>
+              <% end %>
+              <% else %>
+                <tr>
+                    <td colspan="9">
+                        Không có dữ liệu
+                    </td>
                 </tr>
               <% end %>
             </tbody>
