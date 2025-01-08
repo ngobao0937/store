@@ -29,7 +29,7 @@
                       <div class="mb-3">
                         <%= f.label :password, "Mật khẩu", class: "col-form-label" %>
                         <%= f.password_field :password, placeholder: "Mật khẩu", id: "input-password", class: "form-control" %><br/>
-                        <%= link_to "Đã quên mật khẩu", passwords_path %>
+                        <%= link_to "Đã quên mật khẩu", new_password_path %>
                       </div>
                     <%= f.submit "Đăng nhập", class: "btn btn-primary" %>
                   <% end %>
