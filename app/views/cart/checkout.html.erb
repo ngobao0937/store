@@ -1,11 +1,27 @@
 <%= content_for :title, "Thanh toán" %>
 <style>
     form[action="<%= cart_pay_path %>"] {
-    all: unset;
-    all: revert;
-    display: contents;
+        all: unset;
+        all: revert;
+        display: contents;
     }
 </style>
+<div id="loadingOverlay" class="loading-overlay" style="display: none;">
+    <div class="spinner center">
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+    </div>
+</div>
 <main>
     <div id="checkout-checkout" class="container">
         <ul class="breadcrumb">
@@ -188,8 +204,12 @@
       
       if (form.checkValidity()) {
         form.submit();
+        showLoading();
       } else {
         form.reportValidity();
       }
     });
+    function showLoading() {
+        document.getElementById('loadingOverlay').style.display = 'flex';
+    }
 </script>

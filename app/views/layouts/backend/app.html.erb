@@ -2,6 +2,22 @@
 <html lang="<%= I18n.locale %>">
   <%= render 'layouts/backend/head' %>
   <body class="hold-transition skin-blue fixed sidebar-mini">
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+      <div class="spinner center">
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+        <div class="spinner-blade"></div>
+      </div>
+    </div>
     <div id="wrapper">
       <%= render 'layouts/backend/header' %>
       <%= render 'layouts/backend/sidebar' %>

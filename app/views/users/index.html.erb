@@ -1,7 +1,7 @@
 <section class="content-header">
-    <h1>
-      <%= link_to "Thêm mới", new_user_path, class: "btn btn-success btn-sm" %>
-    </h1>
+    <% if Current.user.super_user == 1 %>
+        <%= link_to "Thêm mới", new_user_path, class: "btn btn-success btn-sm" %>
+    <% end %>
 </section>
 
 <section class="content">

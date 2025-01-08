@@ -146,7 +146,7 @@ class CartController < ApplicationController
   
     redirect_to cart_thank_you_path
   rescue StandardError => e
-    flash[:alert] = "Có lỗi xảy ra: #{e.message}"
+    flash[:alert] = "Lỗi: #{e.message}"
     redirect_to cart_checkout_path
   end
   

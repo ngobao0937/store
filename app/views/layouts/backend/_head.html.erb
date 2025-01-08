@@ -12,52 +12,10 @@
   <link rel="stylesheet" href="/assets/backend/themes/dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="/assets/backend/themes/dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="/assets/backend/themes/plugins/iCheck/square/blue.css">
-  <link rel="stylesheet" href="/assets/backend/themes/style_back.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
-  <style>
-    .alert {
-      position: fixed;
-      bottom: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1050;
-      display: none; 
-      opacity: 0; 
-      transition: opacity 0.5s ease-in-out; 
-    }
-    .alert.show {
-      display: block; 
-      opacity: 1;
-    }
-    .td-d {
-        max-width: 150px;
-        white-space: nowrap; 
-        overflow: hidden; 
-        text-overflow: ellipsis;
-        cursor: pointer;
-    }
-    .table img {
-        border-radius: 5px;
-        transition: transform 0.3s ease;
-    }
-
-    .table th, td{
-        text-align: center;
-        vertical-align: middle !important;
-    }
-    .table thead {
-      background-color: rgb(241, 247, 255);
-    }
-    .table img:hover {
-        transform: scale(1.05);
-    }
-    .sidebar-menu .active > a {
-        background-color: #3c8dbc !important;
-        color: #ffffff !important;
-        font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/backend/themes/style_back.css">
+  <link rel="stylesheet" href="/assets/backend/themes/style_custom.css">
+  <link rel="stylesheet" href="/assets/backend/themes/loading.css">
   <%= yield :styles %> 
 </head>
   

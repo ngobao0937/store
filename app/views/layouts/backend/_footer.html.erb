@@ -12,18 +12,6 @@
 <script src="/assets/backend/themes/dist/js/demo.js" data-turbolinks-track="reload"></script>
 <script src="/assets/backend/themes/bower_components/datatables.net/js/jquery.dataTables.min.js" data-turbolinks-track="reload"></script>
 <script src="/assets/backend/themes/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js" data-turbolinks-track="reload"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const alertElement = document.querySelector(".alert");
-    if (alertElement) {
-      alertElement.classList.add("show");
-      setTimeout(() => {
-        alertElement.classList.remove("show");
-        alertElement.style.display = "none"; // Ẩn hoàn toàn
-      }, 4000); // 4 giây
-    }
-  });
-
-</script>
+<script src="/assets/backend/themes/script_custom.js"></script>
 <%= yield :scripts %>
   
