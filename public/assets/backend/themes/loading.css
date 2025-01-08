@@ -5,7 +5,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
     color: #fff;
     display: flex;
     justify-content: center;
@@ -144,7 +143,7 @@
 
 @keyframes spinner-fade9234 {
     0% {
-        background-color: #e4e8ee;
+        background-color: #000000;
     }
 
     100% {

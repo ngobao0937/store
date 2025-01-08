@@ -4,6 +4,7 @@ class ProductMailer < ApplicationMailer
   #
   #   en.product_mailer.in_stock.subject
   #
+  helper Rails.application.routes.url_helpers
   def in_stock
     @product = params[:product]
     mail to: params[:subscriber].email
