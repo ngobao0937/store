@@ -4,7 +4,7 @@ class SubscribersController < ApplicationController
 
   def create
     @product.subscribers.where(subscriber_params).first_or_create
-    redirect_back(fallback_location: home_login_path, notice: "You are now subscribed.")
+    redirect_back(fallback_location: home_login_path, notice: "Đã đăng ký nhận thông báo")
   end
 
   private

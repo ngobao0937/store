@@ -96,6 +96,12 @@ class CartController < ApplicationController
         raise StandardError, "Ngày giao hàng phải lớn hơn ngày hôm nay!"
       end
 
+      cart_items.each do |item|
+        if Product.find(item[:id]) == nil
+          raise StandardError, "Sản phẩm #{item[:id]} không còn tồn tại trong cửa hàng."
+        end
+      end
+
       # kiểm tra số lượng sp trong kho
       cart_items.each do |item|
         product = Product.find(item[:id])

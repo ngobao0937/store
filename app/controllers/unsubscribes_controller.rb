@@ -4,7 +4,7 @@ class UnsubscribesController < ApplicationController
 
   def show
     @subscriber&.destroy
-    redirect_to home_index_path, notice: "Unsubscribed successfully."
+    redirect_to home_index_path, notice: "Hủy đăng ký thành công"
   end
 
   private

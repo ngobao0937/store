@@ -138,7 +138,7 @@
                                             <td class="text-start">
                                                 <span class="cart-item-quantity"><%= item[:quantity] %></span> x
                                                 <%= link_to product_detail_path(id: item[:id], slug: item[:slug]) do %>
-                                                <%= item[:name] %>
+                                                    <%= item[:name] %>
                                                 <% end %>
                                             </td>
                                             <td class="text-end"><%= number_to_currency(item[:price] * item[:quantity], unit: 'VND', format: '%n %u', precision: 0) %></td>

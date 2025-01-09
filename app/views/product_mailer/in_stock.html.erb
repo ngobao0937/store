@@ -1,5 +1,5 @@
-<h1>Good news!</h1>
+<h1>Tin tốt!</h1>
 
-<p><a href="<%= product_detail_url(id: @product.id, slug: @product.slug) %>"><%= @product.name %> is back in stock.</a></p>
+<p>Sản phẩm <a href="<%= product_detail_url(id: @product.id, slug: @product.slug) %>"><%= @product.name %></a> đã có hàng trở lại.</p>
 
-<%= link_to "Unsubscribe", unsubscribe_url(token: params[:subscriber].generate_token_for(:unsubscribe)) %>
+<p>Hủy đăng ký nhận thông báo về sản phẩm này: <%= link_to "Hủy", unsubscribe_url(token: params[:subscriber].generate_token_for(:unsubscribe)) %></p>

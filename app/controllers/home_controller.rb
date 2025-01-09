@@ -94,7 +94,7 @@ class HomeController < ApplicationController
       @user = User.new(user_params)
       @user.super_user ||= 2
       if @user.save
-        redirect_to home_login_path, notice: 'Người dùng đã được tạo thành công.'
+        redirect_to home_login_path, notice: 'Đăng ký thành công.'
       else
         alert = @user.errors.full_messages.to_sentence
         flash.now[:alert] = alert
@@ -121,9 +121,11 @@ class HomeController < ApplicationController
           session[:cart] = nil
         end
         redirect_to account_index_path
+      else
+        redirect_to home_login_path, alert: "Thử lại địa chỉ email hoặc password khác."
       end
     else
-      redirect_to home_login_path, alert: "Try another email address or password."
+      redirect_to home_login_path, alert: "Thử lại địa chỉ email hoặc password khác."
     end
   end
 

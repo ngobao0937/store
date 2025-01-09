@@ -4,9 +4,9 @@ class Product < ApplicationRecord
     validates :name, presence: true
     has_one_attached :featured_image
     validates :inventory_count, numericality: { greater_than_or_equal_to: 0 }
-    has_many :subscribers, dependent: :nullify
+    has_many :subscribers, dependent: :destroy
     belongs_to :menu, foreign_key: 'menu_id'
-    has_many :carts
+    has_many :carts, dependent: :destroy
     has_many :users, through: :carts
 
     after_update_commit :notify_subscribers, if: :back_in_stock?
