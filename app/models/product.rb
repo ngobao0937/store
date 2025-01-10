@@ -8,20 +8,9 @@ class Product < ApplicationRecord
     belongs_to :menu, foreign_key: 'menu_id'
     has_many :carts, dependent: :destroy
     has_many :users, through: :carts
-
-    after_update_commit :notify_subscribers, if: :back_in_stock?
     
     before_save :generate_slug
 
-    def back_in_stock?
-      inventory_count_previously_was.zero? && inventory_count > 0
-    end
-
-    def notify_subscribers
-      subscribers.each do |subscriber|
-        ProductMailer.with(product: self, subscriber: subscriber).in_stock.deliver_later
-      end
-    end
     private
 
     def generate_slug

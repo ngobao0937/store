@@ -1,0 +1,9 @@
+vi:
+  account: "Tài khoản"
+  myaccount: "Tài khoản"
+  orderhistory: "Lịch sử đơn hàng"
+  logout: "Đăng xuất"
+  login: "Đăng nhập"
+  register: "Đăng ký"
+  cart: "Giỏ hàng"
+  pay: "Thanh toán"

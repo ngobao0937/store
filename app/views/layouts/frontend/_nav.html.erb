@@ -11,26 +11,26 @@
                     <div class="dropdown">
                         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa-solid fa-user"></i> 
-                            <span class="d-none d-md-inline">Tài khoản</span> 
+                            <span class="d-none d-md-inline"><%= t("account") %></span> 
                             <i class="fa-solid fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <% if current_user %>
-                                <li><%= link_to 'Tài khoản', account_index_path, class: 'dropdown-item' %></li>
-                                <li><a href="/account/order" class="dropdown-item">Lịch sử đơn hàng</a></li>
-                                <li><%= link_to 'Đăng xuất', account_logout_path, class: 'dropdown-item' %></li>
+                                <li><%= link_to t("account"), account_index_path, class: 'dropdown-item' %></li>
+                                <li><%= link_to t("orderhistory"), account_order_path, class: 'dropdown-item' %></li>
+                                <li><%= link_to t("logout"), account_logout_path, class: 'dropdown-item' %></li>
                             <% else %>
-                                <li><%= link_to 'Đăng ký', home_register_path, class: 'dropdown-item' %></li>
-                                <li><%= link_to 'Đăng nhập', home_login_path, class: 'dropdown-item' %></li>
+                                <li><%= link_to t("register"), home_register_path, class: 'dropdown-item' %></li>
+                                <li><%= link_to t("login"), home_login_path, class: 'dropdown-item' %></li>
                             <% end %>
                         </ul>
                     </div>
                 </li>
-                <li class="list-inline-item"><a href="/cart" title="Giỏ hàng"><i class="fa-solid fa-bag-shopping"></i> <span class="d-none d-md-inline">Giỏ hàng</span></a></li>
+                <li class="list-inline-item"><a href="/cart" title="<%= t("cart") %>"><i class="fa-solid fa-bag-shopping"></i> <span class="d-none d-md-inline"><%= t("cart") %></span></a></li>
                 <% if cart_items.any? %> 
-                <li class="list-inline-item"><a href="/checkout" title="Thanh toán"><i class="fa-solid fa-share"></i> <span class="d-none d-md-inline">Thanh toán</span></a></li>
+                <li class="list-inline-item"><a href="/checkout" title="<%= t("pay") %>"><i class="fa-solid fa-share"></i> <span class="d-none d-md-inline"><%= t("pay") %></span></a></li>
                 <% else %>
-                <li class="list-inline-item"><a href="/cart" title="Thanh toán"><i class="fa-solid fa-share"></i> <span class="d-none d-md-inline">Thanh toán</span></a></li>
+                <li class="list-inline-item"><a href="/cart" title="<%= t("pay") %>"><i class="fa-solid fa-share"></i> <span class="d-none d-md-inline"><%= t("pay") %></span></a></li>
                 <% end %>
             </ul>
         </div>

@@ -32,4 +32,11 @@ en:
   products:
     index:
       title: "Products"
-
+  account: "Account"
+  myaccount: "My account"
+  orderhistory: "Order history"
+  logout: "Log out"
+  login: "Log in"
+  register: "Register"
+  cart: "Shopping cart"
+  pay: "Pay"
