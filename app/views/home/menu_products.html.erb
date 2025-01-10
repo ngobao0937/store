@@ -1,38 +1,49 @@
 <%= content_for :title, @menu.name %>
+<style>
+  form#search {
+      all: unset;
+      all: revert;
+      display: contents;
+  }
+</style>
 <div id="product-category" class="container">
     <div class="row">
       <div id="content" class="col">
         <h1><span class="category-title"><%= @menu.name %></span></h1>
   
         <div id="display-control" class="row">
-          <div class="col-lg-4 offset-lg-6 col-6">
-            <div class="input-group mb-3">
-              <div class="input-group">
-                <label for="input-sort" class="input-group-text">Sắp xếp theo</label>
-                <select id="input-sort" class="form-control" onchange="location = this.value;" style="background: white">
-                  <option value="">Mặc định</option>
-                  <option value="">Tên (A - Z)</option>
-                  <option value="">Tên (Z - A)</option>
-                  <option value="">Giá (Thấp&gt; Cao)</option>
-                  <option value="">Giá (Cao&gt; Thấp)</option>
-                  <option value="">Mô hình (A - Z)</option>
-                  <option value="">Mô hình (Z - A)</option>
-                </select>
+          <%= form_with url: product_menu_path, method: :get, local: true, id: 'search' do %>
+            <div class="col-lg-3 offset-lg-6 me-3">
+                <div class="input-group mb-3">
+                <div class="input-group">
+                    <label for="sort" class="input-group-text">Sắp xếp theo</label>
+                    <select id="sort" name="sort" class="form-control" onchange="this.form.submit()" style="background: white">
+                        <% ["Mặc định", "Tên (A - Z)", "Tên (Z - A)", "Giá (Thấp - Cao)", "Giá (Cao - Thấp)"].each do |value| %>
+                            <option value="<%= value %>" <%= 'selected' if @sort == value %>>
+                                <%= value %>
+                            </option>
+                        <% end %>
+                    </select>
+                </div>
+                </div>
+            </div>
+          
+            <div class="col-lg-2 col-6">
+              <div class="input-group mb-3">
+                <div class="input-group">
+                  <input type="text" name="q" value="<%= @q %>" hidden>
+                  <label for="per_page" class="input-group-text">Số lượng</label>
+                  <select id="per_page" name="per_page" class="form-control" onchange="this.form.submit()" style="background: white">
+                      <% [12, 20, 28].each do |value| %>
+                          <option value="<%= value %>" <%= 'selected' if @per_page == value %>>
+                              <%= value %>
+                          </option>
+                      <% end %>
+                  </select>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-2 col-6">
-            <div class="input-group mb-3">
-              <div class="input-group">
-                <label for="input-limit" class="input-group-text">Số lượng</label>
-                <select id="input-limit" class="form-control" onchange="location = this.value;" style="background: white">
-                  <option value="">12</option>
-                  <option value="" selected="">24</option>
-                  <option value="">48</option>
-                </select>
-              </div>
-            </div>
-          </div>
+          <% end %>
         </div>
   
         <div id="product-list" class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-4">

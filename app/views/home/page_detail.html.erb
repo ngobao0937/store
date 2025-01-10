@@ -7,9 +7,11 @@
 </style>
 <div id="information-information" class="container">
     <div class="row">
-        <div id="content" class="col">
-            <%= raw @page.description %>
-        </div>
+        <% cache @page do %>
+            <div id="content" class="col">
+                <%= raw @page.description %>
+            </div>
+        <% end %>
     </div>
 </div>
 

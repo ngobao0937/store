@@ -45,8 +45,27 @@ class HomeController < ApplicationController
   def menu_products
     @menu = Menu.includes(:children).find(params[:id])
     menu_ids = [@menu.id] + @menu.children.pluck(:id)
+    @per_page = params[:per_page].to_i > 0 ? params[:per_page].to_i : 20
+  
+    @sort = params[:sort].to_s.strip || "Mặc định"
+    
+    order_query = case @sort
+                  when "Tên (A - Z)"
+                    "name ASC"
+                  when "Tên (Z - A)"
+                    "name DESC"
+                  when "Giá (Thấp - Cao)"
+                    Arel.sql("CAST(price AS DECIMAL) ASC")
+                  when "Giá (Cao - Thấp)"
+                    Arel.sql("CAST(price AS DECIMAL) DESC")
+                  else
+                    "id DESC"
+                  end
 
-    @products = Product.where(menu_id: menu_ids).order(id: :desc).page(params[:page]).per(20)
+    @products = Product.where(menu_id: menu_ids)
+                        .order(order_query)
+                        .page(params[:page])
+                        .per(@per_page)
   end
 
   def page_detail

@@ -9,14 +9,16 @@
               <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
                 <div class="row justify-content-center">
                   <div class="col-12 text-center">
-                    <a href="<%= banner.link.present? ? banner.link : '#' %>">
-                      <img src="<%= url_for(banner.featured_image) %>" alt="<%= banner.name %>" class="img-fluid" style="max-height: 350px;" width="1355">
-                    </a>
+                    <% cache ["banner", banner.id] do %>
+                      <a href="<%= banner.link.present? ? banner.link : '#' %>">
+                        <img src="<%= url_for(banner.featured_image) %>" alt="<%= banner.name %>" class="img-fluid" style="max-height: 350px;" width="1355">
+                      </a>
+                    <% end %>
                   </div>
                 </div>
               </div>
             <% end %>
-          </div>
+          </div>          
           <button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carousel-banner-home" type="button">
               <span class="fa-solid fa-chevron-left"></span>
           </button>
@@ -71,8 +73,8 @@
 
         <h2 class="text-center mb-4 mt-4">XEM NHIỀU NHẤT</h2>
         <div class="product-loop row">
-          <% if @products_new.present? %>
-            <% @products_new.each do |product| %>
+          <% if @products_view.present? %>
+            <% @products_view.each do |product| %>
               <div class="col-md-3 col-sm-6 col-xs-6 mb-2">
                 <form method="post">
                   <div class="product-thumb po-relative">
@@ -115,8 +117,8 @@
       
         <h2 class="text-center mb-4 mt-4">SẢN PHẨM MỚI</h2>
         <div class="product-loop row">
-          <% if @products_view.present? %>
-            <% @products_view.each do |product| %>
+          <% if @products_new.present? %>
+            <% @products_new.each do |product| %>
               <div class="col-md-3 col-sm-6 col-xs-6 mb-2">
                 <form method="post">
                   <div class="product-thumb po-relative">
@@ -163,6 +165,7 @@
           <% end %>
         </div>
         
+        <% cache "products_sinh_nhat" do %>
         <h2 class="text-center mb-4 mt-4">HOA SINH NHẬT</h2>
         <div class="product-loop row">
           <% if @products_sinh_nhat.present? %>
@@ -208,7 +211,9 @@
             <% end %>
           <% end %>
         </div>
+        <% end %>
 
+        <% cache "products_khai_truong" do %>
         <h2 class="text-center mb-4 mt-4">HOA KHAI TRƯƠNG</h2>
         <div class="product-loop row">
           <% if @products_khai_truong.present? %>
@@ -254,7 +259,9 @@
             <% end %>
           <% end %>
         </div>
+        <% end %>
 
+        <% cache "products_hoa_lan" do %>
         <h2 class="text-center mb-4 mt-4">HOA LAN HỒ ĐIỆP</h2>
         <div class="product-loop row">
           <% if @products_hoa_lan.present? %>
@@ -300,9 +307,10 @@
             <% end %>
           <% end %>
         </div>
+        <% end %>
 
+        <% cache "footer" do %>
         <h3 class="text-center mt-5 mb-5">KHÁCH HÀNG TIÊU BIỂU</h3>
-
         <div id="carousel-banner-0" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -525,6 +533,7 @@
             </div>
           </div>
         </div>
+        <% end %>
       </div>
     </div>
   </div>

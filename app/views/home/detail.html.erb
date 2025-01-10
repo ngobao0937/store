@@ -2,14 +2,17 @@
 <main>
   <div id="product-info" class="container mt-4">
     <%= render "layouts/frontend/alert" %>
+
     <div class="row">
       <div id="content" class="col">
         <div class="row mb-3">
           <div class="col-sm">
             <div class="image magnific-popup">
+              <% cache [:product_image, @product] do %>
               <a href="<%= url_for(@product.featured_image) %>" title="<%= @product.name %>">
                 <img src="<%= url_for(@product.featured_image) %>" title="<%= @product.name %>" alt="<%= @product.name %>" class="img-thumbnail mb-3" />
               </a>
+              <% end %>
             </div>
           </div>
           <div class="col-sm po-relative">
@@ -105,9 +108,11 @@
         </ul>
 
         <div class="tab-content">
+          <% cache [:product_description, @product] do %>
           <div id="tab-description" class="tab-pane fade show active mb-4">
             <%= raw @product.description %>
           </div>
+          <% end %>
         </div>
       </div>
     </div>
