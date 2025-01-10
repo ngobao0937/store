@@ -165,7 +165,7 @@
           <% end %>
         </div>
         
-        <% cache "products_sinh_nhat" do %>
+        <% cache "products_sinh_nhat_#{Product.maximum(:updated_at)}" do %>
         <h2 class="text-center mb-4 mt-4">HOA SINH NHẬT</h2>
         <div class="product-loop row">
           <% if @products_sinh_nhat.present? %>
@@ -213,7 +213,7 @@
         </div>
         <% end %>
 
-        <% cache "products_khai_truong" do %>
+        <% cache "products_khai_truong_#{Product.maximum(:updated_at)}" do %>
         <h2 class="text-center mb-4 mt-4">HOA KHAI TRƯƠNG</h2>
         <div class="product-loop row">
           <% if @products_khai_truong.present? %>
@@ -261,7 +261,7 @@
         </div>
         <% end %>
 
-        <% cache "products_hoa_lan" do %>
+        <% cache "products_hoa_lan_#{Product.maximum(:updated_at)}" do %>
         <h2 class="text-center mb-4 mt-4">HOA LAN HỒ ĐIỆP</h2>
         <div class="product-loop row">
           <% if @products_hoa_lan.present? %>

@@ -7,7 +7,7 @@
 </style>
 <div id="information-information" class="container">
     <div class="row">
-        <% cache @page do %>
+        <% cache "page_#{@page.cache_key}" do %>
             <div id="content" class="col">
                 <%= raw @page.description %>
             </div>
