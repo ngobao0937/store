@@ -9,7 +9,7 @@
 <div id="product-category" class="container">
     <div class="row">
       <div id="content" class="col">
-        <h1><span class="category-title">Tìm kiếm: <%= @q %></span></h1>
+        <h1><span class="category-title">Tìm kiếm: <%= @q != '' ? @q : 'Tất cả' %></span></h1>
   
         <div id="display-control" class="row">
           <%= form_with url: home_search_path, method: :get, local: true, id: 'search' do %>
