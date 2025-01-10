@@ -87,9 +87,9 @@ class HomeController < ApplicationController
                   when "Tên (Z - A)"
                     "name DESC"
                   when "Giá (Thấp - Cao)"
-                    "price ASC"
+                    Arel.sql("CAST(price AS DECIMAL) ASC")
                   when "Giá (Cao - Thấp)"
-                    "price DESC"
+                    Arel.sql("CAST(price AS DECIMAL) DESC")
                   else
                     "id DESC"
                   end
